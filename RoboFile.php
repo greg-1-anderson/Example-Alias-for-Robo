@@ -6,19 +6,21 @@
  */
 class RoboFile extends \Robo\Tasks
 {
-    public function alias($y) {
-        $this->example($y);
+    protected $defaultOptsForExample = [
+	'a' => 'default value',
+	'tag-example' => 'a',
+	'c' => 'some other value',
+	'd' => '192.168.1.1',
+	'e' => '9000',
+	'f' => '',
+    ];
+    
+    public function alias($opts = $defaultOptsForExample) {
+        $this->example($opts);
     }
 
     public function example(
-		$opts = array(
-			'a' => 'default value',
-			'tag-example' => 'a',
-			'c' => 'some other value',
-			'd' => '192.168.1.1',
-			'e' => '9000',
-			'f' => '',
-        )
+		$opts = $defaultOptsForExample
     ) {
     	echo 'Success! tag-example:' . $opts['tag-example'] . "\n";
     }
